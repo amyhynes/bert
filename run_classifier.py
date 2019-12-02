@@ -400,17 +400,17 @@ class LPProcessor(DataProcessor):
     examples = []
     for (i, line) in enumerate(lines):
       # exclude header DO WE HAVE ONE?
-      if set_type == "test" and i == 0:
+      if i == 0:
         continue
       guid = "%s-%s" % (set_type, i)
+      text_a = tokenization.convert_to_unicode(line[3]) # Claim
+      text_b = tokenization.convert_to_unicode(line[4]) # 5 related sentneces and metadata 
       if set_type == "test":
-        text_a = tokenization.convert_to_unicode(line[1]) #GET CORRECT INDICES BASED ON DATA FORMAT
         label = "0"
       else:
-        text_a = tokenization.convert_to_unicode(line[3])
-        label = tokenization.convert_to_unicode(line[1])
+        label = tokenization.convert_to_unicode(line[0]) # label
       examples.append(
-          InputExample(guid=guid, text_a=text_a, text_b=None, label=label))
+          InputExample(guid=guid, text_a=text_a, text_b=text_b, label=label))
     return examples
 
 
