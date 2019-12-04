@@ -393,19 +393,19 @@ class LPProcessor(DataProcessor):
 
   def get_labels(self):
     """See base class."""
-    return ["0", "1"]
+    return ["0", "1", "2"]
 
   def _create_examples(self, lines, set_type):
     """Creates examples for the training and dev sets."""
     examples = []
     for (i, line) in enumerate(lines):
       guid = "%s-%s" % (set_type, i)
-      text_a = tokenization.convert_to_unicode(line[0]) # Claim
-      text_b = tokenization.convert_to_unicode(line[6]) # 5 related sentneces and metadata 
+      text_a = tokenization.convert_to_unicode(line[1]) # Claim
+      text_b = tokenization.convert_to_unicode(line[7]) # 5 related sentneces and metadata 
       if set_type == "test":
         label = "0"
       else:
-        label = tokenization.convert_to_unicode(line[3]) # label
+        label = tokenization.convert_to_unicode(line[4]) # label
       examples.append(
           InputExample(guid=guid, text_a=text_a, text_b=text_b, label=label))
     return examples
