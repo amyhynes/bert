@@ -322,12 +322,12 @@ class MrpcProcessor(DataProcessor):
       if i == 0:
         continue
       guid = "%s-%s" % (set_type, i)
-      text_a = tokenization.convert_to_unicode(line[3])
-      text_b = tokenization.convert_to_unicode(line[4])
+      text_a = tokenization.convert_to_unicode(line[0])
+      text_b = tokenization.convert_to_unicode(line[6])
       if set_type == "test":
         label = "0"
       else:
-        label = tokenization.convert_to_unicode(line[0])
+        label = tokenization.convert_to_unicode(line[3])
       examples.append(
           InputExample(guid=guid, text_a=text_a, text_b=text_b, label=label))
     return examples
@@ -399,16 +399,13 @@ class LPProcessor(DataProcessor):
     """Creates examples for the training and dev sets."""
     examples = []
     for (i, line) in enumerate(lines):
-      # exclude header DO WE HAVE ONE?
-      if i == 0:
-        continue
       guid = "%s-%s" % (set_type, i)
-      text_a = tokenization.convert_to_unicode(line[3]) # Claim
-      text_b = tokenization.convert_to_unicode(line[4]) # 5 related sentneces and metadata 
+      text_a = tokenization.convert_to_unicode(line[0]) # Claim
+      text_b = tokenization.convert_to_unicode(line[6]) # 5 related sentneces and metadata 
       if set_type == "test":
         label = "0"
       else:
-        label = tokenization.convert_to_unicode(line[0]) # label
+        label = tokenization.convert_to_unicode(line[3]) # label
       examples.append(
           InputExample(guid=guid, text_a=text_a, text_b=text_b, label=label))
     return examples
