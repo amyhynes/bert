@@ -399,10 +399,10 @@ class LPProcessor(DataProcessor):
     """Creates examples for the training and dev sets."""
     examples = []
     for (i, line) in enumerate(lines):
+      print(enumerate(line))
       guid = "%s-%s" % (set_type, i)
-      print(line[1])
       text_a = tokenization.convert_to_unicode(line[1]) # Claim
-      #text_b = tokenization.convert_to_unicode(line[7]) # 5 related sentneces and metadata 
+      text_b = tokenization.convert_to_unicode(line[7]) # 5 related sentneces and metadata 
       if set_type == "test":
         label = "0"
       else:
