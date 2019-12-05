@@ -323,8 +323,6 @@ class MrpcProcessor(DataProcessor):
         continue
       guid = "%s-%s" % (set_type, i)
       text_a = tokenization.convert_to_unicode(line[0])
-      print(line[0])
-      print(line)
       text_b = tokenization.convert_to_unicode(line[6])
       if set_type == "test":
         label = "0"
@@ -402,6 +400,8 @@ class LPProcessor(DataProcessor):
     examples = []
     for (i, line) in enumerate(lines):
       guid = "%s-%s" % (set_type, i)
+      print(line[1])
+      print(line)
       text_a = tokenization.convert_to_unicode(line[1]) # Claim
       text_b = tokenization.convert_to_unicode(line[7]) # 5 related sentneces and metadata 
       if set_type == "test":
