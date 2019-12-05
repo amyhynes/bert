@@ -323,6 +323,8 @@ class MrpcProcessor(DataProcessor):
         continue
       guid = "%s-%s" % (set_type, i)
       text_a = tokenization.convert_to_unicode(line[0])
+      print(line[0])
+      print(line)
       text_b = tokenization.convert_to_unicode(line[6])
       if set_type == "test":
         label = "0"
