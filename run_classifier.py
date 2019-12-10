@@ -231,10 +231,7 @@ class LPProcessor(DataProcessor):
     for (i, line) in enumerate(lines):
       guid = "%s-%s" % (set_type, i)
       text_a = tokenization.convert_to_unicode(line[0] + line[1] + line[2] + line[6]) # Claim + claimant + date + related sentences
-      if set_type == "test":
-        label = "0"
-      else:
-        label = tokenization.convert_to_unicode(line[3]) # label
+      label = tokenization.convert_to_unicode(line[3]) # label
       examples.append(
           InputExample(guid=guid, text_a=text_a, text_b=None, label=label))
     return examples
